@@ -1,0 +1,9 @@
+{
+  "name": "{{ cookiecutter.name }}",
+  "id": "{{ cookiecutter.bundle_id }}",
+  "author": "{{ cookiecutter.author_name}} <{{ cookiecutter.author_email }}>",
+  "version": "{{ cookiecutter.version }}",
+  "description": "{{ cookiecutter.description }}",
+  "license": "{{ cookiecutter.license }}",
+  "requisites": []
+}

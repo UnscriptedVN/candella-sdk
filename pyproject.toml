@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "candella-sdk"
+version = "0.1.0"
+description = ""
+authors = ["Marquis Kurt <software@marquiskurt.net>"]
+
+[tool.poetry.scripts]
+start="candella_sdk:start"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+cookiecutter = "^1.7.2"
+
+[tool.poetry.dev-dependencies]
+pytest = "^4.6"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

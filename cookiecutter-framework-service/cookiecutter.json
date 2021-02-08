@@ -1,0 +1,18 @@
+{
+  "name": "Service",
+  "bundle_id": "dev.unscriptedvn.candella.coreservice",
+  "version": "0.1.0",
+  "year": "2021",
+  "author_name": "Foo Bar",
+  "author_email": "foo.bar@email.com",
+  "description": "A simple service",
+  "license": [
+    "MIT license",
+    "BSD license",
+    "ISC license",
+    "Apache Software License 2.0",
+    "GNU General Public License v3",
+    "Proprietary",
+    "Other"
+  ]
+}
