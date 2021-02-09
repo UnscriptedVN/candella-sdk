@@ -5,7 +5,7 @@ description = "Create and manage Candella apps and services with ease."
 authors = ["Marquis Kurt <software@marquiskurt.net>"]
 
 [tool.poetry.scripts]
-start="candella_sdk:start"
+candella-sdk="candella_sdk:main"
 
 [tool.poetry.dependencies]
 python = ">=3.8"

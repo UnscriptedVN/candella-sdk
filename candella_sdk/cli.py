@@ -37,14 +37,12 @@ def create_project(proj: str):
     Arguments:
         proj (str): The type of project to create.
     """
-    if proj == "application":
-        cookiecutter('cookiecutter-candella-app')
-    elif proj == "service":
-        cookiecutter('cookiecutter-candella-service')
-    elif proj == "framework":
-        cookiecutter('cookiecutter-candella-framework')
-    else:
-        print(f"The following is not a valid project type: {proj}")
+    if proj not in ["application", "service", "framework"]:
+        print(f'The following is not a valid Candella project type: {proj}')
+        return 1
+    
+    project_type = "app" if proj == "application" else proj
+    cookiecutter(f"https://github.com/UnscriptedVN/candella-{project_type}-template.git")
 
 
 def main():
