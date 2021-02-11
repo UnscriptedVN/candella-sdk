@@ -7,10 +7,19 @@ import json
 __APP_MANIFEST_VALID_KEYS = [
     "name", "productName", "id", "author", "version", "description", "permissions", "requisites", "license"
 ]
+__APP_MANIFEST_REQUIRED_KEYS = [
+    "name", "id", "author", "version", "description", "permissions", "license"
+]
+
 __SERVICE_MANIFEST_VALID_KEYS = [
     "name", "id", "author", "version", "description", "permissions", "requisites", "license"
 ]
+__SERVICE_MANIFEST_REQUIRED_KEYS = [
+    "name", "id", "author", "version", "description", "permissions", "requisites", "license"
+]
+
 __FRAMEWORK_MANIFEST_VALID_KEYS = ["name", "id", "author", "version", "description", "requisites", "license"]
+__FRAMEWORK_MANIFEST_REQUIRED_KEYS = __FRAMEWORK_MANIFEST_VALID_KEYS
 
 
 class CandellaProjectType(Enum):
@@ -58,6 +67,9 @@ def validate(path: str):
     with open(os.path.join(path, "manifest.json"), 'r') as manifest_file:
         manifest = json.load(manifest_file)
         
+    # TODO: This code is not really optimized. We're checking the manifest list twice for required keys
+    # and for invalid keys, meaning that we have complexity of O(2n).
+
     # Ensure that the manifest doesn't contain any invalid keys.
     for key in manifest:
         if project_type == CandellaProjectType.application and key not in __APP_MANIFEST_VALID_KEYS:
@@ -66,6 +78,20 @@ def validate(path: str):
             return False, f"invalid manifest key: {key}"
         elif project_type == CandellaProjectType.framework and key not in __FRAMEWORK_MANIFEST_VALID_KEYS:
             return False, f"invalid manifest key: {key}"
+
+    # Likewise, check that the manifests have all of the required keys.
+    if project_type == CandellaProjectType.application:
+        for key in __APP_MANIFEST_REQUIRED_KEYS:
+            if key not in manifest:
+                return False, f"missing required key: {key}"
+    elif project_type == CandellaProjectType.core_service:
+        for key in __SERVICE_MANIFEST_REQUIRED_KEYS:
+            if key not in manifest:
+                return False, f"missing required key: {key}"
+    elif project_type == CandellaProjectType.framework:
+        for key in __FRAMEWORK_MANIFEST_REQUIRED_KEYS:
+            if key not in manifest:
+                return False, f"missing required key: {key}"
 
     # Ensure that apps and core services have the iconset folder.
     if (project_type == CandellaProjectType.application or project_type == CandellaProjectType.core_service) and \
