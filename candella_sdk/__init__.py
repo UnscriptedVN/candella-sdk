@@ -9,5 +9,6 @@
 #
 
 from .cli import main
+from . import sdk
 
 __version__ = '1.0.0-alpha1'

@@ -13,6 +13,8 @@ from argparse import ArgumentParser
 from typing import List, Optional
 from cookiecutter.main import cookiecutter
 from click.exceptions import Abort
+from . import sdk
+import os
 
 
 def get_args(override: Optional[List[str]] = None):
@@ -28,22 +30,8 @@ def get_args(override: Optional[List[str]] = None):
     arguments = ArgumentParser(description="Boostrap Candella frameworks and apps.")
     arguments.add_argument("--action", help="The action to run.", required=True)
     arguments.add_argument("--type", help="The type of project to create.", nargs=1, default="application")
+    arguments.add_argument("--project", help="The path to the project to validate.", nargs=1, required=False)
     return arguments.parse_args(override if override else argv[1:])
-
-
-def create_project(proj: str):
-    """Creates a project with a corresponding Cookiecutter template.
-    
-    Arguments:
-        proj (str): The type of project to create.
-    """
-    if proj not in ["application", "service", "framework"]:
-        print(f'The following is not a valid Candella project type: {proj}')
-        return 1
-    
-    project_type = "app" if proj == "application" else proj
-    cookiecutter(f"https://github.com/UnscriptedVN/candella-{project_type}-template.git")
-
 
 def main():
     """Runs the main code for the SDK manager."""
@@ -51,7 +39,18 @@ def main():
 
     if OPTIONS.action == "create":
         try:
-            create_project(OPTIONS.type[0])
+            sdk.create(sdk.CandellaProjectType(OPTIONS.type[0]))
+        except Abort:
+            print("\nAbort.")
+    elif OPTIONS.action == "validate" and "project" in OPTIONS:
+        try:
+            validation, reason = sdk.validate(OPTIONS.project[0])
+            valid_str = "succeeded" if validation else "failed"
+            valid_clr = "\u001b[31m\u001b[1m" if not validation else ""
+            proj_name = os.path.split(OPTIONS.project[0])[-1:][0]
+            print(f"{valid_clr}Validation of {proj_name} {valid_str}.\u001b[0m")
+            if not validation:
+                print(f"Reason: {reason}")
         except Abort:
             print("\nAbort.")
 
