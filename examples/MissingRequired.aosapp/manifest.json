@@ -1,0 +1,7 @@
+{
+    "name": "MissingRequired",
+    "version": "1.0.0",
+    "id": "net.marquiskurt.invalid",
+    "description": "This is a BAD app...",
+    "permissions": []
+}

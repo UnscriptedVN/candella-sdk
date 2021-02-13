@@ -1,0 +1,11 @@
+{
+  "name": "Valid",
+  "productName": "A Valid App",
+  "id": "dev.unscriptedvn.candella.perfectly-normal-app",
+  "author": "Unscripted VN Team <hello@unscriptedvn.dev>",
+  "version": "0.1.0",
+  "description": "A perfectly valid app.",
+  "license": "Proprietary",
+  "permissions": [],
+  "requisites": ["AppKit", "Observable"]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "MissingIconset",
+  "productName": "Missing iconset",
+  "id": "net.marquiskurt.bad",
+  "author": "Foo Bar <foo.bar@email.com>",
+  "version": "0.1.0",
+  "description": "Missing the iconset folder",
+  "license": "Proprietary",
+  "permissions": [],
+  "requisites": ["AppKit", "Observable"]
+}
