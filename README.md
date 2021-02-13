@@ -1,10 +1,10 @@
 # Candella SDK
 
-Create apps, frameworks, and core services for Candella with ease.
+The Candella SDK lets developers create apps, core services, and frameworks for the Candella fork of AliceOS. It provides utilities to create and validate Candella projects from the command line or programmatically.
 
-## Getting started: Install from PyPI
+## Quickstart: Install from pip
 
-You can download the Candella SDK through PyPI:
+Run the following to install the Candella SDK:
 
 ```
 pip install candella-sdk
@@ -13,8 +13,7 @@ pip install candella-sdk
 ## Build from source
 
 ### Requirements
+- Python 3.8 or greater
+- Poetry v1.1.0 or greater
 
-- Python 3.8 or higher.
-- Poetry 1.1.4 or higher.
-
-Clone the repository from GitHub and run `poetry install` in the root of the project.
+Clone the repository from GitHub and run `poetry install; poetry build` to build the project. The resulting wheel files will be located in `dist`.
