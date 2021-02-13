@@ -9,7 +9,7 @@ jobs:
       fail-fast: false
       matrix:
         pyversions:
-          - '3.8.5'
+          - '3.9.1'
     steps:
       - name: Clone source
         uses: actions/checkout@v1
